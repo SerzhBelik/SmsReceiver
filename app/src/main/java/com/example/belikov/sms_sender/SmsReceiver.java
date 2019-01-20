@@ -8,7 +8,8 @@ import android.widget.Toast;
 
 public class SmsReceiver extends BroadcastReceiver {
 
-    int messageId = 0;
+    public static final String PHONE_NUMBER = "phone number";
+    public static final String TEXT = "text";
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -27,6 +28,11 @@ public class SmsReceiver extends BroadcastReceiver {
             }
             String bodyText = body.toString();
             makeNote(context, smsFromPhone, bodyText);
+
+            Intent secondIntent = new Intent(context, ActivityTwo.class);
+            secondIntent.putExtra(smsFromPhone, PHONE_NUMBER);
+            secondIntent.putExtra(bodyText, TEXT);
+            context.startActivity(intent);
 
 
 // Это будет работать только на Android ниже 4.4

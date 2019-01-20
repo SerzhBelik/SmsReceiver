@@ -19,6 +19,10 @@ public class MainActivity extends Activity {
         final EditText msg = findViewById(R.id.msg);
         final EditText address = findViewById(R.id.address);
         final Button send = findViewById(R.id.send);
+
+        if (getIntent().getStringExtra(SmsReceiver.PHONE_NUMBER) != null){
+            address.setText(getIntent().getStringExtra(SmsReceiver.PHONE_NUMBER));
+        }
         send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
