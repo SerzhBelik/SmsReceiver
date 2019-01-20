@@ -4,7 +4,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
-import android.widget.Toast;
 
 public class SmsReceiver extends BroadcastReceiver {
 
@@ -27,21 +26,13 @@ public class SmsReceiver extends BroadcastReceiver {
                 body.append(messages[i].getMessageBody());
             }
             String bodyText = body.toString();
-            makeNote(context, smsFromPhone, bodyText);
 
             Intent secondIntent = new Intent(context, ActivityTwo.class);
             secondIntent.putExtra(smsFromPhone, PHONE_NUMBER);
             secondIntent.putExtra(bodyText, TEXT);
             context.startActivity(intent);
 
-
-// Это будет работать только на Android ниже 4.4
-//            abortBroadcast();
         }
     }
 
-    // Вывод уведомления в строке состояния
-    private void makeNote(Context context, String addressFrom, String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-    }
 }
